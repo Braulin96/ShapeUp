@@ -9,8 +9,8 @@ const Login = ({ name, email,handleSubmit, handleNameChange, handleEmailChange, 
       <div className="rounded-lg bg-blue-100 w-fit px-20 py-10 mx-auto mt-[20px] flex flex-col gap-y-[10px]">
         <p className="text-xl text-blue-800 font-semibold">Login</p>
         <p>
-          Already have an account?
-          <span className="ml-1 underline text-blue-800">Sign in.</span>
+          Do not have an account?
+          <span className="ml-1 underline text-blue-800">Register</span>
         </p>
         <div className="mt-2">
           <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
