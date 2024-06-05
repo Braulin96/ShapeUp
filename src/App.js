@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import Login from "./components/Login/Login";
 import Spinner from "./utilities/Spinner";
+import useCounter from "./components/hooks/useConter";
 
 import { Users } from "./data/loginMockup";
-
-import Woman from "./assets/images/woman.jpeg";
 
 const App = () => {
   const [name, setName] = useState("");
@@ -16,6 +15,7 @@ const App = () => {
   const [currentImage, setCurrentImage] = useState();
   const [error, setError] = useState();
   const [fetchError, setFetchError] = useState();
+  const [counter, handleCounter] = useCounter ();
 
   useEffect(() => {
     const names = Users.map((user) => user.name);
@@ -65,9 +65,14 @@ const App = () => {
   };
 
   const isSubmitDisabled = !name || !email;
-  
+
   return (
     <div className="App">
+
+      <button className="bg-blue-500 p-3 rounded-full" onClick={handleCounter}>
+        {counter}
+      </button>
+
       {isLoading ? (
         <Spinner />
       ) : (

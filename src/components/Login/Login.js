@@ -1,11 +1,20 @@
 import PropTypes from "prop-types";
 
+import useCounter from "../hooks/useConter";
+
 import "./Login.css";
 
 const Login = ({ name, email,handleSubmit, handleNameChange, handleEmailChange, disabled }) => {  
-  console.log ('isdisable:', disabled)     
+  console.log ('isdisable:', disabled)    
+  
+  const [counter, handleCounter] = useCounter();
+
   return (
     <div className="login text-center">
+      <button onClick={handleCounter}>
+        AddCounter
+      </button>
+      <p>The value of counter is now {counter} </p>
       <div className="rounded-lg bg-blue-100 w-fit px-20 py-10 mx-auto mt-[20px] flex flex-col gap-y-[10px]">
         <p className="text-xl text-blue-800 font-semibold">Login</p>
         <p>
