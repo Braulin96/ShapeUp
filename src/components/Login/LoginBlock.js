@@ -30,7 +30,7 @@ const LoginBlock = () => {
   return (
     <motion.div className="loginBlock w-screen h-screen text-black flex justify-center items-center text-[70px] font-extralight relative">
       <motion.div
-       className="border-2 border-black bg-red-300 h-full aspect-square rounded-full flex justify-center items-center
+       className="border-2 border-black bg-red-300 h-auto max-h-full w-auto max-w-full aspect-square rounded-full flex justify-center items-center
        ">
         <motion.div
           className=""
