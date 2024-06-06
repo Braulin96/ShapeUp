@@ -21,7 +21,7 @@ const LoginBlock = () => {
     } else {
       const timer = setTimeout(() => {
         setShowMotivational(true);
-      }, 2000); 
+      }, 2000);
 
       return () => clearTimeout(timer);
     }
@@ -30,11 +30,15 @@ const LoginBlock = () => {
   return (
     <motion.div className="loginBlock w-screen h-screen text-black flex justify-center items-center text-[70px] font-extralight relative">
       <motion.div
-       className="border-2 border-black bg-red-300 h-auto max-h-full w-auto max-w-full aspect-square rounded-full flex justify-center items-center
-       ">
+        initial={{ scale: [1, 0.5, 0] }}
+        animate={{ opacity: [1, 0.5, 0], scale: [1, 2, 1,]}}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2 }}
+        className="border-2 border-black bg-red-300 w-auto h-full aspect-square rounded-full flex justify-center items-center
+       "
+      >
         <motion.div
-          className=""
-          key={currentIndex} 
+          key={currentIndex}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
