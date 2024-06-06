@@ -8,21 +8,13 @@ import { landingMockup } from "../../data/landingMockup";
 const LoginBlock = () => {
   const landingMockupData = landingMockup();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [showMotivational, setShowMotivational] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  console.log("showMotivational:", showMotivational);
+  const [isButtonHover, setIsButtonHover] = useState(false);
 
   useEffect(() => {
     if (currentIndex < landingMockupData.length - 1) {
       const timer = setTimeout(() => {
         setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, 2000);
-
-      return () => clearTimeout(timer);
-    } else {
-      const timer = setTimeout(() => {
-        setShowMotivational(true);
       }, 2000);
 
       return () => clearTimeout(timer);
@@ -66,24 +58,42 @@ const LoginBlock = () => {
         </motion.div>
       </motion.div>
       {isLoading && (
-        <motion.div className="absolute flex">
-          {loadingText.split("").map((letter, index) => (
-            <motion.span
-              key={index}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 0.5, 1, 0.5, 0] }}
-              transition={{
-                duration: 2,
-                ease: "easeInOut",
-                delay: index * 0.2,
-                repeat: Infinity,
-              }}
-              className="inline-block"
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </motion.div>
+        <div className="absolute flex flex-col gap-y-[30px]">
+          <motion.div className="">
+            {loadingText.split("").map((letter, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: isButtonHover ? 1 : [0, 0.5, 1, 0.5, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  ease: "easeInOut",
+                  delay: index * 0.2,
+                  repeat: isButtonHover ? 0 : Infinity,
+                }}
+                className="inline-block"
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </motion.div>
+          <motion.button
+            onMouseEnter={() => setIsButtonHover(true)}
+            onMouseLeave={() => setIsButtonHover(false)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.5, 1] }}
+            transition={{
+              duration: 2,
+              ease: "easeInOut",
+              delay: 2,
+            }}
+            className="text-[30px] rounded-full bg-gray-100 text-black shadow-lg hover:scale-105 transition-all duration-500"
+          >
+            Let's Start
+          </motion.button>
+        </div>
       )}
     </motion.div>
   );
