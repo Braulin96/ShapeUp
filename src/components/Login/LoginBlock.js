@@ -29,9 +29,19 @@ const LoginBlock = () => {
     }
   }, [currentIndex, landingMockupData.length]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(true);
+    }, 12000); // Start loading animation after the main animation completes
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleAnimationComplete = () => {
     setIsLoading(true);
   };
+
+  const loadingText = "ShapeUp...";
 
   return (
     <motion.div className="loginBlock w-screen h-screen text-white bg-black flex justify-center items-center text-[70px] font-extralight relative">
@@ -56,13 +66,23 @@ const LoginBlock = () => {
         </motion.div>
       </motion.div>
       {isLoading && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ scale: [0, 1], opacity: [0, 1] }}
-          transition={{ duration: 1 }}
-          className="absolute"
-        >
-          Loading your journey
+        <motion.div className="absolute flex">
+          {loadingText.split("").map((letter, index) => (
+            <motion.span
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 0.5, 1, 0.5, 0] }}
+              transition={{
+                duration: 2,
+                ease: "easeInOut",
+                delay: index * 0.2,
+                repeat: Infinity,
+              }}
+              className="inline-block"
+            >
+              {letter}
+            </motion.span>
+          ))}
         </motion.div>
       )}
     </motion.div>
