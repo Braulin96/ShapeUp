@@ -36,7 +36,7 @@ const LoginBlock = () => {
           duration: 2,
           delay: 10,
         }}
-        className="border-2 border-black bg-black w-auto h-full aspect-square rounded-full flex justify-center items-center
+        className="border-2 border-black w-auto h-full aspect-square rounded-full flex justify-center items-center
        "
       >
         <motion.div
