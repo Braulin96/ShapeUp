@@ -1,1 +1,1 @@
-export const landingMockup = () => ['Filling tired', 'Not well', 'Sick', 'Depressive', 'No way!!']
+export const landingMockup = () => ['Filling tired', 'Not well', 'Sick', 'Depressive', 'We can help!!']
