@@ -89,7 +89,7 @@ const LoginBlock = () => {
               ease: "easeInOut",
               delay: 2,
             }}
-            className="text-[30px] rounded-full bg-gray-100 text-black shadow-lg hover:scale-105 transition-all duration-500"
+            className="text-[30px] rounded-full bg-gray-100 text-black shadow-lg hover:scale-105 transition-all duration-500 hover:bg-opacity-100 bg-opacity-80 "
           >
             Let's Start
           </motion.button>
