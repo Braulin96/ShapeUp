@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-
-import "./LoginBlock.css";
-
-import { landingMockup } from "../../data/landingMockup";
+// components/Login/LoginBlock.jsx
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { LOGIN } from '../../routes/paths';
+import './LoginBlock.css';
+import { landingMockup } from '../../data/landingMockup';
 
 const LoginBlock = () => {
+  const navigate = useNavigate();
   const landingMockupData = landingMockup();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isButtonHover, setIsButtonHover] = useState(false);
+
+  const handleClick = () => {
+    console.log ('navigate')
+    navigate(LOGIN)
+  };
 
   useEffect(() => {
     if (currentIndex < landingMockupData.length - 1) {
@@ -24,7 +31,7 @@ const LoginBlock = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(true);
-    }, 12000); // Start loading animation after the main animation completes
+    }, 12000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -59,17 +66,17 @@ const LoginBlock = () => {
       </motion.div>
       {isLoading && (
         <div className="absolute flex flex-col gap-y-[30px]">
-          <motion.div className="">
-            {loadingText.split("").map((letter, index) => (
+          <motion.div>
+            {loadingText.split('').map((letter, index) => (
               <motion.span
                 key={index}
                 initial={{ opacity: 0 }}
                 animate={{
-                  opacity: isButtonHover ? 1 : [0, 0.5, 1, 0.5, 0]
+                  opacity: isButtonHover ? 1 : [0, 0.5, 1, 0.5, 0],
                 }}
                 transition={{
                   duration: 2,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                   delay: index * 0.2,
                   repeat: isButtonHover ? 0 : Infinity,
                 }}
@@ -79,20 +86,21 @@ const LoginBlock = () => {
               </motion.span>
             ))}
           </motion.div>
-          <motion.button
+          <button
+            onClick={handleClick}
             onMouseEnter={() => setIsButtonHover(true)}
             onMouseLeave={() => setIsButtonHover(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 0.5, 1] }}
             transition={{
               duration: 2,
-              ease: "easeInOut",
+              ease: 'easeInOut',
               delay: 2,
             }}
-            className="text-[30px] rounded-full bg-gray-100 text-black shadow-lg hover:scale-105 transition-all duration-500 hover:bg-opacity-100 bg-opacity-80 "
+            className="text-[30px] rounded-full bg-gray-100 text-black shadow-lg hover:scale-105 transition-all duration-500 hover:bg-opacity-100 bg-opacity-80"
           >
             Let's Start
-          </motion.button>
+          </button>
         </div>
       )}
     </motion.div>
